@@ -3,7 +3,9 @@
 See a [[https://excalamus.github.io][demo]].
 
 [[https://github.com/excalamus/org-static-site/#please-adopt-org-static-site][Please adopt =org-static-site=!]]
+
 [[https://github.com/excalamus/org-static-site/#how-to-use-org-static-site][How to use =org-static-site=]]
+
 -----
 
 * Please adopt =org-static-site=!
