@@ -1,0 +1,221 @@
+=org-static-site= is a static website generator for [[https://www.gnu.org/software/emacs/][Emacs]] [[https://orgmode.org/][Org mode]].
+
+No static site generator worked how I wanted it to nor produced an
+output that I liked.  So, I wrote my own and this is the result.
+
+-----
+
+They say, "better is the enemy of good enough."  =org-static-site= is
+certainly good enough.  (I mean, you're reading this, right?)  But I
+want something better.  I've returned to the drawing board and am
+letting this project go.
+
+Are you...
+
+- Comfortable with Emacs?
+- Insterested in learning Emacs Lisp?
+- Not sure where to start?
+
+If so, *please adopt this project!*
+
+* Is adoption right for you?
+After reading [[https://www.gnu.org/software/emacs/manual/html_node/eintr/]["An Introduction to Programming in Emacs Lisp"]], people
+often get stuck.  /"What do I do next?"/ The next step is to /use what
+you've learned/.  To grow in skill requires pushing at the edge of
+your ability.  Growth also requires dedication and reflection.  A big
+project becomes overwhelming and simple tasks just don't scratch the
+itch.  What's needed is structure and guidance, freedom and
+open-endedness.  It also helps to write problems and solutions out.
+See where this is going?
+
+=org-static-site= is a great opportunity to learn and is an excellent
+tool to write with!
+
+With =org-static-site=, you can...
+
+- gain a deeper understanding of Emacs
+- [[https://git-scm.com/book/en/v2][learn to use Git]]
+- manage a collaborative project
+- meet people from around the world
+- learn from/with others
+- get better at reading other people's code
+- make design decisions
+- support multiple platforms
+- learn about Free Software licensing
+- support international languages
+- write tests
+- understand the basics of web development
+- make a blog
+- actually start writing code
+
+And more!
+
+The code base is small.  There are only 350 lines, most of which is
+concatenated strings.  It would probably take a beginner two weeks to
+learn how it works.  This project only does the basics.  My guess is
+that just by looking at this page, you can think of several
+improvements.  RSS?  Tags?  The infrastructure is already there.
+
+Here are some things you could do...
+
+- implement rss
+- implement tags
+- toggle options like table of contents
+- make =interactive= functions callable from code
+- make the filepath-to-URL conversion robust (see =org-static-site-new-post=)
+- programmatically walk new users through the setup
+- generalize functions into a stand-alone library
+- put on MEPLA
+- ensure cross-platform support
+- clean up the CSS
+- modernize the HTML
+- make it easy for users to have a table of contents
+
+* How to adopt
+1. Fork the project on Github
+2. [[https://softwareengineering.stackexchange.com/a/277699][Update the LICENSE copyright with your name]]
+3. Let me know you're adopting =org-static-site=
+4. I'll direct people to your fork
+
+As stated by the LICENSE: /THE SOFTWARE IS PROVIDED "AS IS"/.  I am
+under no obligation to help you.  However, I will try to make the
+transfer go smoothly.  I'm not an ogre, just a busy person! :)
+
+-----
+
+* Publishing a page
+=org-static-site= is designed to be simple.  There are no
+templates[fn:2].  There are no complex rules for different folders or
+obscure naming conventions.  Just put =.org= files in a =post/=
+directory, run =org-static-site-publish=, and posts will be converted
+to =.html= in a =publish/= directory[fn:1].
+
+A website has a root directory which contains a =post/= and =publish/=
+directory.  The =publish/= directory in turn contains a =static/=
+directory.  These are all variables, so change them if you want.
+
+#+begin_example
+<root>/
+  post/
+    <file-name-sans-extension>.org
+    index.org
+    about.org
+  publish/
+    index.html
+    about.html
+    <file-name-sans-extension>.html
+    static/
+      style.css
+      about.jpg
+      favicon.png
+#+end_example
+
+=org-static-site.el= only cares about =post/= and =publish/=.  A post
+file is an =.org= file living in =post/=.  A publish file lives in
+=publish/= and is an =.html= file which was created from a post file.
+=org-static-site.el= only looks for files in =post/=.  Only files in
+the =post/= directory will be converted.  You decide what to do with
+the publishable files located in =publish/=.  Draft files may
+therefore be kept at the root level (or wherever else isn't the
+=post/= directory).  =org-static-site= requires an =index.org= and an
+=about.org=.
+
+Posts are dated, but not on the index page.  The date really only
+controls the order of the index.  Post file names are read from disk
+system using =directory-files= which uses =string-lessp= to sort.
+Otherwise, dates appear at the end of a post.
+
+* Changing page layout
+=org-static-site= works by rendering post files into strings and
+concatenating them with the HTML that makes up a webpage.  If you want
+a page to look different, change the source code.  See
+=org-static-site-publish-page=.
+
+#+begin_src elisp
+(defun org-static-site-publish-page (page-path type)
+  "Render PAGE-PATH as TYPE and publish as html file.
+
+TYPE is a symbol indicating the type of page to render: 'index,
+'post, or 'about.  Results are output to
+`org-static-site-publish-directory'.
+
+The rendered content is inserted into a generic html page
+structure:
+
++--<head>-------------------------+
+| `org-static-site-static-head'   |
+| `org-static-site-variable-head' |
++--<body>-------------------------+
+| `org-static-site-body-preamble' | ----->  <html>
+|  rendered-content               |
+| `org-static-site-body-postamble'|
++---------------------------------+
+
+A page consists of two parts, <head> and <body>.  The <head> is
+made of the `org-static-site-static-head' and
+`org-static-site-variable-head'; the <body> of a
+`org-static-site-body-preamble', the rendered content, and
+`org-static-site-body-postamble'.
+
+Content is rendered using one of `org-static-site-post-content',
+`org-static-site-index-content', or
+`org-static-site-about-content' depending on TYPE."
+  (let ((outfile
+	  (org-static-site-relative-path page-path org-static-site-publish-directory "\.html"))
+	(body-content
+	 (cond ((eq type 'post)
+		(org-static-site-post-content page-path))
+	       ((eq type 'index)
+		(org-static-site-index-content page-path))
+		((eq type 'about)
+		 (org-static-site-about-content page-path
+				    org-static-site-about-pic
+				    org-static-site-about-pic-alt)))))
+    (when body-content
+      (with-temp-file outfile
+	(insert (concat
+		 "<!DOCTYPE html5>\n"
+		 "<html lang=\"en\">\n"
+		 "   <head>\n"
+		 (org-static-site-static-head)
+		 (org-static-site-variable-head page-path)
+		 "   </head>\n"
+		 "   <body>\n"
+		 (org-static-site-body-preamble)
+		 body-content
+		 (org-static-site-body-postamble)
+		 "   </body>\n"
+		 "</html>")))
+      ;; alert user
+      (message "Wrote %s" outfile))))
+#+end_src
+
+If you change the source code, remember to re-evaluate the project!
+
+You may want to use this to reset the =defcustom=:
+
+#+begin_src elisp
+(defmacro redefcustom (symbol newval &optional doc)
+  "Reset the value of a symbol which was created using `defcustom'.
+This function is intended only for development purposes.  Simply
+replace `defcustom' with `redefcustom' and SYMBOL will be assigned
+NEWVAL.  DOC will be ignored."
+  `(setq ,symbol ,newval))
+#+end_src
+
+* Syntax highlighting
+Syntax highlighting is controlled by =htmlize=.  This is included with
+Org mode.  =htmlize= is implemented so that syntax highlighting colors
+are gleaned from your current theme.  It's annoying to do, but it's
+simplest to change your theme before publishing.  The theme used here
+is [[https://emacsthemes.com/themes/base16-tomorrow-theme.html][base16-tomorrow]].
+
+* Footnotes
+
+[fn:1] I think this is a good definition for "simple".  The post files
+have to come from /somewhere/.  Aside from asking for the files, or
+putting all the posts in a [[https://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html][single file]], I think this is the simplest.
+You could develop [[https://github.com/novoid/lazyblorg#why-lazyblorg][an entire system to find files for you]].
+
+[fn:2] For [[https://juanjose.garciaripoll.com/blog/org-mode-html-templates/index.html][an HTML template system for org-mode]], Juan José García
+Ripoll explains how to do that.
