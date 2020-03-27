@@ -5,6 +5,8 @@ output that I liked.  So, I wrote my own and this is the result.
 
 -----
 
+* Please adopt =org-static-site=!
+
 They say, "better is the enemy of good enough."  =org-static-site= is
 certainly good enough.  (I mean, you're reading this, right?)  But I
 want something better.  I've returned to the drawing board and am
@@ -18,7 +20,7 @@ Are you...
 
 If so, *please adopt this project!*
 
-* Is adoption right for you?
+** Is adoption right for you?
 After reading [[https://www.gnu.org/software/emacs/manual/html_node/eintr/]["An Introduction to Programming in Emacs Lisp"]], people
 often get stuck.  /"What do I do next?"/ The next step is to /use what
 you've learned/.  To grow in skill requires pushing at the edge of
@@ -71,7 +73,7 @@ Here are some things you could do...
 - modernize the HTML
 - make it easy for users to have a table of contents
 
-* How to adopt
+** How to adopt
 1. Fork the project on Github
 2. [[https://softwareengineering.stackexchange.com/a/277699][Update the LICENSE copyright with your name]]
 3. Let me know you're adopting =org-static-site=
@@ -82,8 +84,8 @@ under no obligation to help you.  However, I will try to make the
 transfer go smoothly.  I'm not an ogre, just a busy person! :)
 
 -----
-
-* Publishing a page
+* How to use =org-static-site=
+** Publishing a page
 =org-static-site= is designed to be simple.  There are no
 templates[fn:2].  There are no complex rules for different folders or
 obscure naming conventions.  Just put =.org= files in a =post/=
@@ -125,7 +127,7 @@ controls the order of the index.  Post file names are read from disk
 system using =directory-files= which uses =string-lessp= to sort.
 Otherwise, dates appear at the end of a post.
 
-* Changing page layout
+** Changing page layout
 =org-static-site= works by rendering post files into strings and
 concatenating them with the HTML that makes up a webpage.  If you want
 a page to look different, change the source code.  See
@@ -203,7 +205,7 @@ NEWVAL.  DOC will be ignored."
   `(setq ,symbol ,newval))
 #+end_src
 
-* Syntax highlighting
+** Syntax highlighting
 Syntax highlighting is controlled by =htmlize=.  This is included with
 Org mode.  =htmlize= is implemented so that syntax highlighting colors
 are gleaned from your current theme.  It's annoying to do, but it's
