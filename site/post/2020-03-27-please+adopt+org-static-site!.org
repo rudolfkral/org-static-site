@@ -1,0 +1,78 @@
+#+TITLE: Please adopt org-static-site!
+#+DATE: [2020-03-27 Fri 16:22]
+
+They say, "better is the enemy of good enough."  =org-static-site= is
+certainly good enough.  (I mean, you're reading this, right?)  But I
+want something better.  I've returned to the drawing board and am
+letting this project go.
+
+Are you...
+
+- Comfortable with Emacs?
+- Insterested in learning Emacs Lisp?
+- Not sure where to start?
+
+If so, *please adopt this project!*
+
+* Is adoption right for you?
+After reading [[https://www.gnu.org/software/emacs/manual/html_node/eintr/]["An Introduction to Programming in Emacs Lisp"]], people
+often get stuck.  /"What do I do next?"/ The next step is to /use what
+you've learned/.  To grow in skill requires pushing at the edge of
+your ability.  Growth also requires dedication and reflection.  A big
+project becomes overwhelming and simple tasks just don't scratch the
+itch.  What's needed is structure and guidance, freedom and
+open-endedness.  It also helps to write problems and solutions out.
+See where this is going?
+
+=org-static-site= is a great opportunity to learn and is an excellent
+tool to write with!
+
+With =org-static-site=, you can...
+
+- gain a deeper understanding of Emacs
+- [[https://git-scm.com/book/en/v2][learn to use Git]]
+- manage a collaborative project
+- meet people from around the world
+- learn from/with others
+- get better at reading other people's code
+- make design decisions
+- support multiple platforms
+- learn about Free Software licensing
+- support international languages
+- write tests
+- understand the basics of web development
+- make a blog
+- actually start writing code
+
+And more!
+
+The code base is small.  There are only 350 lines, most of which is
+concatenated strings.  It would probably take a beginner two weeks to
+learn how it works.  This project only does the basics.  My guess is
+that just by looking at this page, you can think of several
+improvements.  RSS?  Tags?  The infrastructure is already there.
+
+Here are some things you could do...
+
+- implement rss
+- implement tags
+- toggle options like table of contents
+- make =interactive= functions callable from code
+- make the filepath-to-URL conversion robust (see =org-static-site-new-post=)
+- programmatically walk new users through the setup
+- generalize functions into a stand-alone library
+- put on MEPLA
+- ensure cross-platform support
+- clean up the CSS
+- modernize the HTML
+- make it easy for users to have a table of contents
+
+* How to adopt
+1. Fork the project on Github
+2. [[https://softwareengineering.stackexchange.com/a/277699][Update the LICENSE copyright with your name]]
+3. Let me know you're adopting =org-static-site=
+4. I'll direct people to your fork
+
+As stated by the LICENSE: /THE SOFTWARE IS PROVIDED "AS IS"/.  I am
+under no obligation to help you.  However, I will try to make the
+transfer go smoothly.  I'm not an ogre, just a busy person! :)

@@ -1,0 +1,14 @@
+#+TITLE: Index
+#+DATE: <2020-03-25 14:12>
+
+=org-static-site= is a static website generator for [[https://www.gnu.org/software/emacs/][Emacs]] [[https://orgmode.org/][Org mode]].
+
+No static site generator worked how I wanted it to nor produced an
+output that I liked.  So, I wrote my own and this is the result.
+
+#+begin_quote
+Text in =index.org= will appear above the post listing on the index
+page.  The =#+TITLE= keyword is not rendered for this page.
+#+end_quote
+
+-----

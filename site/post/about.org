@@ -1,0 +1,11 @@
+#+TITLE: About
+#+DATE: <2020-03-25 14:12>
+
+Text in =about.org= will appear on the =about.html= page wrapped
+around the image =about.jpg=.  The =#+TITLE:= keyword is rendered for
+this page.  You can easily change it from 'About' to whatever you
+want.
+
+So, do whatever you want with this page.  Most websites have a words
+about their purpose, some contact info, links to proprietary services,
+etc. in a place like this.  Get creative!
