@@ -3,6 +3,8 @@
 No static site generator worked how I wanted it to nor produced an
 output that I liked.  So, I wrote my own and this is the result.
 
+See a [[https://excalamus.github.io][demo]].
+
 -----
 
 * Please adopt =org-static-site=!
