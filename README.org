@@ -1,10 +1,9 @@
 =org-static-site= is a static website generator for [[https://www.gnu.org/software/emacs/][Emacs]] [[https://orgmode.org/][Org mode]].
 
-No static site generator worked how I wanted it to nor produced an
-output that I liked.  So, I wrote my own and this is the result.
-
 See a [[https://excalamus.github.io][demo]].
 
+[[https://github.com/excalamus/org-static-site/#please-adopt-org-static-site][Please adopt =org-static-site=!]]
+[[https://github.com/excalamus/org-static-site/#how-to-use-org-static-site][How to use =org-static-site=]]
 -----
 
 * Please adopt =org-static-site=!
