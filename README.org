@@ -11,7 +11,7 @@ See a [[https://excalamus.github.io][demo]].
 * Please adopt =org-static-site=!
 
 They say, "better is the enemy of good enough."  =org-static-site= is
-certainly good enough.  (I mean, you're reading this, right?)  But I
+certainly good enough. But I
 want something better.  I've returned to the drawing board and am
 letting this project go.
 
